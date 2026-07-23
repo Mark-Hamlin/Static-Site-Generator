@@ -1,5 +1,5 @@
 import unittest
-from textnode import TextNode, TextType
+from textnode import TextNode, TextType, text_node_to_html_node
 
 
 class TestTextNode(unittest.TestCase):
@@ -22,6 +22,9 @@ class TestTextNode(unittest.TestCase):
     def test_text_type_image(self):
         node = TextNode("This is a text node", TextType.IMAGE)
         self.assertEqual(node.text_type, TextType.IMAGE)
+    def test_text_type_text(self):
+        node = TextNode("This is a text node", TextType.TEXT)
+        self.assertEqual(node.text_type, TextType.TEXT)
     def test_text_type_none(self):
         node = TextNode("This is a text node", None)
         self.assertEqual(node.text_type, None)
@@ -36,7 +39,11 @@ class TestTextNode(unittest.TestCase):
     def test_test_type_url(self):
         node = TextNode("This is text node", TextType.CODE, "www.boot.dev")
         self.assertEqual(node.url, "www.boot.dev")
-
+    def test_text(self):
+        node = TextNode("This is a text node", TextType.TEXT)
+        html_node = text_node_to_html_node(node)
+        self.assertEqual(html_node.tag, None)
+        self.assertEqual(html_node.value, "This is a text node")
 
 
 
