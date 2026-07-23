@@ -1,5 +1,6 @@
 import unittest
 from textnode import TextNode, TextType
+from htmlnode import HTMLNode
 
 class TestTextNode(unittest.TestCase):
     def test_eq(self):
@@ -35,6 +36,8 @@ class TestTextNode(unittest.TestCase):
     def test_test_type_url(self):
         node = TextNode("This is text node", TextType.CODE, "www.boot.dev")
         self.assertEqual(node.url, "www.boot.dev")
+
+
 
 
 
